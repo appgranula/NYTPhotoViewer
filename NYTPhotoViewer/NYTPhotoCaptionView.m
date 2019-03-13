@@ -107,7 +107,9 @@ static const CGFloat NYTPhotoCaptionViewVerticalMargin = 7.0;
 
     [self setupTextView];
     [self updateTextViewAttributedText];
-    [self setupGradient];
+    // fix #278
+    // https://github.com/nytimes/NYTPhotoViewer/issues/278
+    //[self setupGradient];
 }
 
 - (void)setupTextView {
