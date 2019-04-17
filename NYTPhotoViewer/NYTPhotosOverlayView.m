@@ -81,10 +81,9 @@
     [self addSubview:self.navigationBar];
     
     if ([self respondsToSelector:@selector(safeAreaLayoutGuide)]) {
-        NSLayoutConstraint *topConstraint = [self.navigationBar.topAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.topAnchor];
         NSLayoutConstraint *leftConstraint = [self.navigationBar.leftAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.leftAnchor];
         NSLayoutConstraint *rightConstraint = [self.navigationBar.rightAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.rightAnchor];
-        [self addConstraints:@[topConstraint, leftConstraint, rightConstraint]];
+        [self addConstraints:@[leftConstraint, rightConstraint]];
     } else {
         NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.navigationBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
         NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.navigationBar attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];

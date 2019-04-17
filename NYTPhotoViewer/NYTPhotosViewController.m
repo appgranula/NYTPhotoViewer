@@ -235,6 +235,9 @@ static const UIEdgeInsets NYTPhotosViewControllerCloseButtonImageInsets = {3, 0,
     
     [self updateOverlayInformation];
     [self.view addSubview:self.overlayView];
+    NSLayoutConstraint *constr = [self.overlayView.topAnchor constraintEqualToAnchor:self.overlayView.superview.topAnchor];
+    [NSLayoutConstraint activateConstraints:@[constr]];
+    [NSLayoutConstraint activateConstraints:@[[self.overlayView.navigationBar.topAnchor constraintEqualToAnchor:self.overlayView.topAnchor constant:[UIApplication sharedApplication].statusBarFrame.size.height]]];
     
     [self setOverlayViewHidden:YES animated:NO];
 }
@@ -484,6 +487,7 @@ static const UIEdgeInsets NYTPhotosViewControllerCloseButtonImageInsets = {3, 0,
         return;
     }
     
+    [self overlayViewWillChangeHidden:hidden animated:animated];
     if (animated) {
         self.overlayView.hidden = NO;
         
@@ -494,11 +498,20 @@ static const UIEdgeInsets NYTPhotosViewControllerCloseButtonImageInsets = {3, 0,
         } completion:^(BOOL finished) {
             self.overlayView.alpha = 1.0;
             self.overlayView.hidden = hidden;
+            [self overlayViewDidChangeHidden:hidden];
         }];
     }
     else {
         self.overlayView.hidden = hidden;
     }
+}
+    
+- (void)overlayViewWillChangeHidden:(BOOL)hidden animated:(BOOL)animated {
+    
+}
+    
+- (void)overlayViewDidChangeHidden:(BOOL)hidden {
+    
 }
 
 - (NYTPhotoViewController *)newPhotoViewControllerForPhoto:(id <NYTPhoto>)photo atIndex:(NSUInteger)index {

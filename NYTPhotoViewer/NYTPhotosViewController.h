@@ -167,6 +167,10 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
  *  @param animated Whether any resulting transitions should be animated.
  */
 - (void)reloadPhotosAnimated:(BOOL)animated;
+    
+- (void)overlayViewWillChangeHidden:(BOOL)hidden animated:(BOOL)animated;
+    
+- (void)overlayViewDidChangeHidden:(BOOL)hidden;
 
 @end
 
